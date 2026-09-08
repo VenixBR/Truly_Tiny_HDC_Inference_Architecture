@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="HyperInference_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="HyperInference_tb" />
+            <top_module name="util_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="994.332015 us"></ZoomStartTime>
+      <ZoomEndTime time="1,002.333598 us"></ZoomEndTime>
+      <Cursor1Time time="1,001.000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="163"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="13" />
+   <wvobject type="logic" fp_name="/HyperInference_tb/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/HyperInference_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/HyperInference_tb/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/HyperInference_tb/HYPER_INFERENCE/currentState">
+      <obj_property name="ElementShortName">currentState</obj_property>
+      <obj_property name="ObjectShortName">currentState</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/HyperInference_tb/HYPER_INFERENCE/bits_av">
+      <obj_property name="ElementShortName">bits_av</obj_property>
+      <obj_property name="ObjectShortName">bits_av</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/HyperInference_tb/HYPER_INFERENCE/encoder_done">
+      <obj_property name="ElementShortName">encoder_done</obj_property>
+      <obj_property name="ObjectShortName">encoder_done</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/HyperInference_tb/HYPER_INFERENCE/done_reg">
+      <obj_property name="ElementShortName">done_reg</obj_property>
+      <obj_property name="ObjectShortName">done_reg</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/HyperInference_tb/HYPER_INFERENCE/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/class">
+      <obj_property name="ElementShortName">class[4:0]</obj_property>
+      <obj_property name="ObjectShortName">class[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/smaller">
+      <obj_property name="ElementShortName">smaller[11:0]</obj_property>
+      <obj_property name="ObjectShortName">smaller[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/HyperInference_tb/HYPER_INFERENCE/i">
+      <obj_property name="ElementShortName">i</obj_property>
+      <obj_property name="ObjectShortName">i</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/HyperInference_tb/HYPER_INFERENCE/count_bits">
+      <obj_property name="ElementShortName">count_bits</obj_property>
+      <obj_property name="ObjectShortName">count_bits</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters">
+      <obj_property name="ElementShortName">counters[0:25][11:0]</obj_property>
+      <obj_property name="ObjectShortName">counters[0:25][11:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[0]">
+         <obj_property name="ElementShortName">[0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[1]">
+         <obj_property name="ElementShortName">[1][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[2]">
+         <obj_property name="ElementShortName">[2][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[3]">
+         <obj_property name="ElementShortName">[3][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[4]">
+         <obj_property name="ElementShortName">[4][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[5]">
+         <obj_property name="ElementShortName">[5][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[6]">
+         <obj_property name="ElementShortName">[6][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[7]">
+         <obj_property name="ElementShortName">[7][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[8]">
+         <obj_property name="ElementShortName">[8][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[9]">
+         <obj_property name="ElementShortName">[9][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[9][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[10]">
+         <obj_property name="ElementShortName">[10][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[10][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[11]">
+         <obj_property name="ElementShortName">[11][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[11][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[12]">
+         <obj_property name="ElementShortName">[12][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[12][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[13]">
+         <obj_property name="ElementShortName">[13][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[13][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[14]">
+         <obj_property name="ElementShortName">[14][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[14][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[15]">
+         <obj_property name="ElementShortName">[15][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[15][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[16]">
+         <obj_property name="ElementShortName">[16][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[16][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[17]">
+         <obj_property name="ElementShortName">[17][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[17][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[18]">
+         <obj_property name="ElementShortName">[18][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[18][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[19]">
+         <obj_property name="ElementShortName">[19][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[19][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[20]">
+         <obj_property name="ElementShortName">[20][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[20][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[21]">
+         <obj_property name="ElementShortName">[21][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[21][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[22]">
+         <obj_property name="ElementShortName">[22][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[22][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[23]">
+         <obj_property name="ElementShortName">[23][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[23][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[24]">
+         <obj_property name="ElementShortName">[24][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[24][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/HyperInference_tb/HYPER_INFERENCE/counters[25]">
+         <obj_property name="ElementShortName">[25][11:0]</obj_property>
+         <obj_property name="ObjectShortName">[25][11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

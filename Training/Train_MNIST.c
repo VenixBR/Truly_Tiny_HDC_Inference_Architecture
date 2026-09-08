@@ -5,6 +5,7 @@
 #define IMAGE_SIZE (28*28)
 #define NUM_CLASSES 10
 #define DIMENSIONS  8192
+//#define DIMENSIONS  8
 #define FEATURE_LEVELS 255
 #define FEATURES (28 * 28)
 #define CLASSES 10
@@ -97,7 +98,7 @@ uint8_t *get_image_or_label ( char *begin, int i) {
 
 // Return the i bit of a byte
 uint8_t get_bit(uint8_t the_byte,  int index){
-    uint8_t t = the_byte<<(7-index);
+    uint8_t t = the_byte<<(index);
     return t>>7;
 }
 
@@ -122,12 +123,11 @@ void set_bit_vector(uint8_t *vector, int i, uint8_t value){
     // Multiply the bits by yours weights
     uint8_t b[8];
     for(int i=0 ; i<8 ; i++){
-        b[i] = get_bit(vector[byte], i)<<i;
-    }
+        b[i] = get_bit(vector[byte], i)<<(7-i); // olhar
+    } //-->
 
     // Set the bit
-    //b[7-new_i] = value<<(new_i);
-    b[new_i] = value<<(new_i);
+    b[new_i] = value<<(7-new_i);
    
     // Accumulate the bits*weights
     uint8_t new_byte = 0;
@@ -146,26 +146,26 @@ uint8_t xor_reduction(uint16_t value, int b15,int b14,int b13,int b12,int b11,in
     uint8_t b[16];
 
     for (int i=0 ; i<8 ; i++){
-        b[i] = get_bit(lo, i);
-        b[i+8] = get_bit(hi, i);
+        b[7-i] = get_bit(lo, i);
+        b[15-i] = get_bit(hi, i);
     }
 
-    b[15] = b[15] && b15 ;
-    b[14] = b[14] && b14;
-    b[13] = b[13] && b13;
-    b[12] = b[12] && b12;
-    b[11] = b[11] && b11;
-    b[10] = b[10] && b10;
-    b[9] = b[9] && b9;
-    b[8] = b[8] && b8;
-    b[7] = b[7] && b7;
-    b[6] = b[6] && b6;
-    b[5] = b[5] && b5;
-    b[4] = b[4] && b4;
-    b[3] = b[3] && b3;
-    b[2] = b[2] && b2;
-    b[1] = b[1] && b1;
-    b[0] = b[0] && b0;
+    b[15] = b[15] & b0 ;
+    b[14] = b[14] & b1;
+    b[13] = b[13] & b2;
+    b[12] = b[12] & b3;
+    b[11] = b[11] & b4;
+    b[10] = b[10] & b5;
+    b[9] = b[9] & b6;
+    b[8] = b[8] & b7;
+    b[7] = b[7] & b8;
+    b[6] = b[6] & b9;
+    b[5] = b[5] & b10;
+    b[4] = b[4] & b11;
+    b[3] = b[3] & b12;
+    b[2] = b[2] & b13;
+    b[1] = b[1] & b14;
+    b[0] = b[0] & b15;
 
 
     return b[0]^b[1]^b[2]^b[3]^b[4]^b[5]^b[6]^b[7]^b[8]^b[9]^b[10]^b[11]^b[12]^b[13]^b[14]^b[15];
@@ -266,23 +266,29 @@ int main()
     int temp;
     for (uint16_t i=0 ; i<DIMENSIONS ; i++){  // iterate in bytes
         temp = roll2(i, (i%16));
-        set_bit_vector(gen_seed1, i, xor_reduction(temp,0,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0));
-        set_bit_vector(gen_seed2, i, xor_reduction(temp,0,0,0,0,1,0,1,1,0,0,1,1,0,0,0,0));
-        set_bit_vector(gen_seed3, i, xor_reduction(temp,1,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0));
+        set_bit_vector(gen_seed1, i, xor_reduction(temp,0,0,0,0,1,1,0,1,0,0,0,0,1,1,1,0));
+        //printf("temp : %d e %b\n", temp, temp);
+        //printf("%d ", xor_reduction(temp,0,0,0,0,1,1,0,1,0,0,0,0,1,1,1,0));
+        set_bit_vector(gen_seed2, i, xor_reduction(temp,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0));
+        set_bit_vector(gen_seed3, i, xor_reduction(temp,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1));
     }
 
+    int tempo;
     printf("\n\ngen_seed1 = ");
-    for (int i=0 ; i<(DIMENSIONS/8)+1 ; i++){
-        printf("%b",gen_seed1[i]);
+    for (int i=0 ; i<DIMENSIONS ; i++){
+        printf("%b",get_bit_vector(gen_seed3, i));
+        tempo = i;
     }
 
-    printf("\n0         = %16b",0);
+    //printf("\n\n%d", tempo);
 
-      printf("\n0 shifted = %16b\n",roll2(0, (0%16)));
-      printf("xor : %b\n", xor_reduction(roll2(0, (0%16)),0,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0));
-      printf("gen_seed1[0] : %b\n", gen_seed1[0]);
-      set_bit_vector(gen_seed1, 0, 1);
-        printf("gen_seed1[0] : %b\n", gen_seed1[0]);
+    // printf("\n0         = %16b",0);
+
+    //   printf("\n0 shifted = %16b\n",roll2(0, (0%16)));
+    //   printf("xor : %b\n", xor_reduction(roll2(0, (0%16)),0,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0));
+    //   printf("gen_seed1[0] : %b\n", gen_seed1[0]);
+    //   set_bit_vector(gen_seed1, 0, 1);
+    //     printf("gen_seed1[0] : %b\n", gen_seed1[0]);
 
     free(images);
     free(labels);

@@ -1,0 +1,3 @@
+[submodule "Hyperinference"]
+	path = HDLs/Hyperinference
+	url = https://github.com/evertoncarara/HyperInference.git

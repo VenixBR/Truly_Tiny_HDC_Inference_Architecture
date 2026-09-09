@@ -310,7 +310,7 @@ int main()
         y_hvs_bin[i] = roll_HV(gen_seed3, DIMENSIONS, i);
     }
 
-    printf("\n\n[INFO] Lel_ID HVs Generated!");
+    printf("\n\n[INFO] Level_ID HVs Generated!");
 
     printf("\n\nx_hvs_bin[3] = ");
     for (int i=0 ; i<DIMENSIONS ; i++){

@@ -5,7 +5,7 @@
 #define IMAGE_SIZE (28*28)
 #define NUM_CLASSES 10
 #define DIMENSIONS  8192
-//#define DIMENSIONS  8
+//#define DIMENSIONS  32
 #define FEATURE_LEVELS 255
 #define FEATURES (28 * 28)
 #define CLASSES 10
@@ -190,7 +190,8 @@ int roll(int x, int shift)
     return x;
 }
 
-int roll2(uint16_t x, int shift){
+// Implements the roll function
+int roll_16(uint16_t x, int shift){
     
     uint8_t bin[16];
     for (int i = 0; i < 16; i++) {
@@ -220,6 +221,22 @@ int roll2(uint16_t x, int shift){
 
 }
 
+// Implements the right roll function in a HV
+uint8_t* roll_HV(uint8_t *vector, int D, int shift){
+
+    uint8_t *t_vector = malloc((D/8) * sizeof(uint8_t));
+
+    for(int i=0 ; i<D-shift ; i++){
+        set_bit_vector(t_vector,i+shift,get_bit_vector(vector, i));
+    }
+
+    for(int i=0 ; i<shift ; i++){
+        set_bit_vector(t_vector,i,get_bit_vector(vector, D-shift+i));
+    }
+
+    return t_vector;
+}
+
 int main()
 {
     int num_images;
@@ -232,65 +249,89 @@ int main()
     // Abort if occurs some error in imagens or labels load
     if (images == NULL || labels == NULL) return 1;
 
-    printf("Dataset loaded!\n");
-
-    // printf("Primeiro label: %d\n", labels[0]);
-
-    // printf("Primeiros pixels:\n");
-
-    // uint8_t *point;
-    // for (int a=0; a<10 ; a++) {
-    // for (int i = 0; i < 28; i++) {
-
-    //     for (int j = 0; j < 28; j++) {
-    //         point = get_image(images, a);
-    //         printf("%3d ",point[i * 28 + j]);
-    //     }
-
-    //     printf("\n");
-    // }
-    // }
+    printf("\n[INFO] Dataset loaded!\n");
 
 
-    // Generation of BHVs
+
+    /*#######################################
+    ##        Generation of BHVs           ##
+    #######################################*/
+
+    // Create the BHVs packaging 8 bits in one byte
     uint8_t gen_seed1[DIMENSIONS/8];
     uint8_t gen_seed2[DIMENSIONS/8];
     uint8_t gen_seed3[DIMENSIONS/8];
 
+    // Initialize the BHVs with 0 in all indexes
     for (int i=0 ; i<DIMENSIONS; i++){
         set_bit_vector(gen_seed1, i, 0);
         set_bit_vector(gen_seed2, i, 0);
         set_bit_vector(gen_seed3, i, 0);
     }
 
-    int temp;
-    for (uint16_t i=0 ; i<DIMENSIONS ; i++){  // iterate in bytes
-        temp = roll2(i, (i%16));
-        set_bit_vector(gen_seed1, i, xor_reduction(temp,0,0,0,0,1,1,0,1,0,0,0,0,1,1,1,0));
-        //printf("temp : %d e %b\n", temp, temp);
-        //printf("%d ", xor_reduction(temp,0,0,0,0,1,1,0,1,0,0,0,0,1,1,1,0));
-        set_bit_vector(gen_seed2, i, xor_reduction(temp,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0));
-        set_bit_vector(gen_seed3, i, xor_reduction(temp,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1));
+    // Generate the bits of BHVs
+    int rolled_i;
+    for (uint16_t i=0 ; i<DIMENSIONS ; i++){
+        rolled_i = roll_16(i, (i%16));
+        set_bit_vector(gen_seed1, i, xor_reduction(rolled_i,0,0,0,0,1,1,0,1,0,0,0,0,1,1,1,0));
+        set_bit_vector(gen_seed2, i, xor_reduction(rolled_i,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0));
+        set_bit_vector(gen_seed3, i, xor_reduction(rolled_i,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1));
     }
 
-    int tempo;
+    // Print the BHVs
+    printf("\n\n[INFO] BHVs Generated!");
     printf("\n\ngen_seed1 = ");
     for (int i=0 ; i<DIMENSIONS ; i++){
+        printf("%b",get_bit_vector(gen_seed1, i));
+    }
+    printf("\n\ngen_seed2 = ");
+    for (int i=0 ; i<DIMENSIONS ; i++){
+        printf("%b",get_bit_vector(gen_seed2, i));
+    }
+    printf("\n\ngen_seed3 = ");
+    for (int i=0 ; i<DIMENSIONS ; i++){
         printf("%b",get_bit_vector(gen_seed3, i));
-        tempo = i;
     }
 
-    //printf("\n\n%d", tempo);
 
-    // printf("\n0         = %16b",0);
+    /*#######################################
+    ##             Level-ID HVs            ##
+    #######################################*/
 
-    //   printf("\n0 shifted = %16b\n",roll2(0, (0%16)));
-    //   printf("xor : %b\n", xor_reduction(roll2(0, (0%16)),0,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0));
-    //   printf("gen_seed1[0] : %b\n", gen_seed1[0]);
-    //   set_bit_vector(gen_seed1, 0, 1);
-    //     printf("gen_seed1[0] : %b\n", gen_seed1[0]);
+    uint8_t *level_hvs_bin [FEATURE_LEVELS];
+    uint8_t *x_hvs_bin [28];
+    uint8_t *y_hvs_bin [28];
+
+    for (int i=0 ; i<FEATURE_LEVELS ; i++)
+        level_hvs_bin[i] = roll_HV(gen_seed1, DIMENSIONS, i);
+    
+    for (int i=0 ; i<28 ; i++){
+        x_hvs_bin[i] = roll_HV(gen_seed2, DIMENSIONS, i);
+        y_hvs_bin[i] = roll_HV(gen_seed3, DIMENSIONS, i);
+    }
+
+    printf("\n\n[INFO] Lel_ID HVs Generated!");
+
+    printf("\n\nx_hvs_bin[3] = ");
+    for (int i=0 ; i<DIMENSIONS ; i++){
+        printf("%b",get_bit_vector(x_hvs_bin[3], i));
+    }
+
+
+    printf("\n");
+
+    printf("\n\n");
+
+
 
     free(images);
     free(labels);
+    for (int i = 0; i < FEATURE_LEVELS; i++) {
+        free(level_hvs_bin[i]);
+    }
+    for (int i = 0; i < 28; i++) {
+        free(x_hvs_bin[i]);
+        free(y_hvs_bin[i]);
+    }
     return 0;
 }

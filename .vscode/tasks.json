@@ -2,14 +2,16 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: gcc arquivo de build ativo",
+            "label": "C/C++: Build Train_MNIST",
             "command": "/usr/bin/gcc",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${fileDirname}/Train_MNIST.c",
+                "${fileDirname}/hdc_utils.c",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/Train_MNIST",
+                "-lm"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -21,7 +23,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Tarefa gerada pelo Depurador."
+            "detail": "Build do Train_MNIST."
         }
     ],
     "version": "2.0.0"
